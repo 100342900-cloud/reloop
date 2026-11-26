@@ -3,6 +3,13 @@ test-results/
 playwright-report/
 blob-report/
 .playwright/
+shots/
+coverage/
 *.log
 .DS_Store
 e2e/.server.pid
+.env
+.env.*
+!.env.example
+*.pem
+*.key

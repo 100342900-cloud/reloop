@@ -1,7 +1,7 @@
 import { spawn } from "node:child_process";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { writeFile } from "node:fs/promises";
+import { mkdir, writeFile } from "node:fs/promises";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -19,6 +19,9 @@ async function waitFor(url, tries = 40) {
 }
 
 export default async function globalSetup() {
+  const shots = process.env.SHOTS_DIR || path.join(root, "shots");
+  await mkdir(shots, { recursive: true });
+
   const child = spawn(process.execPath, [path.join(root, "scripts", "serve-all.mjs")], {
     cwd: root,
     stdio: "inherit",

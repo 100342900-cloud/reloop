@@ -2,7 +2,7 @@
 
 ## Status (26 November 2026, Europe/Madrid)
 
-Milestone 2 is **working locally**.
+Milestone 2 is **working locally**. The source tree is being published as a public repository at https://github.com/100342900-cloud/reloop (branch `main`).
 
 - Wow path: deny Spoke & Salvage, paste `http://127.0.0.1:8084/allied_cycles` (or the Allied origin), and recompose with no code changes. The new shop is discovered from its published `/policies/opendeal.json`. Allied's road-ready tourer needs no repair, so the package is Allied Cycles + River Runners: list €95 (80 + 15) → €80 (75 + 5) after published concessions.
 - Consent and deny are per origin in the hub UI. In-store pickup drops cargo and finishes at €90 (60 + 30).
@@ -14,8 +14,21 @@ Milestone 2 is **working locally**.
 - Official `check_partner.mjs`: each default shop, and Allied Cycles, can be called from the hub; the hub can be called from a shop. OK.
 - OpenDeal Kit unit tests: **11/11 passed**.
 - Playwright e2e: **6/6 passed** (original happy path and CORS/catalogues, plus wow path, collect, hashed receipt / selective disclosure, and a 390px layout check).
-- Screenshots: `shots/` (`01`–`07` from the happy path; `m2-*` from milestone 2).
+- Screenshots from local runs are written to `shots/` (gitignored).
 - No paid APIs, no sign-ups, no live model calls (composer is deterministic; assistant is BYOK and untested against a real key).
+
+## Pre-publish audit (26 November 2026)
+
+The working tree, tracked files and full git history were searched for confidential or personal data, tokens, and contest materials that must stay out of this repository.
+
+Findings and fixes:
+
+- The only personal datum in the project sources was a first name in an earlier `BUILD-LOG.md` sentence about a Cloudflare account. That sentence was rewritten, and git history was rewritten before the first push so the old wording is not reachable.
+- End-to-end tests and the build log used an absolute local path for screenshots. They now use `shots/` under the repository root (or `SHOTS_DIR`).
+- Official runtime copies mention BYOK `apiKey` handling and documented key *prefixes* (`sk-or-`, `sk-proj-`, and so on). No actual keys, tokens, or credential files are in the tree or the history.
+- A third-party author email appears in vendored `agent-runner.bundle.js` (js-sha256). That is upstream, not project identity.
+- Council briefs, research notes and other contest workbooks live *outside* this repository and were not added. `rules.md` and `ideas-business-teams.md` are not in the tree.
+- Commit authors remain `RE:LOOP <reloop@localhost>`.
 
 ## Decisions
 
@@ -25,6 +38,7 @@ Milestone 2 is **working locally**.
 - Local hosts: `127.0.0.1` and `localhost` with distinct ports (origins include the port). Avoided `::1` to keep Playwright simple. Official HTTP loopback allow-list still covers these hosts.
 - Shop action bridges share no website tools. Composition reads published policy data, which stays inside the MVP (no cross-site write transport). Holds are simulations on the hub.
 - Demo clock is frozen at Wednesday 2027-01-06; Saturday is 2027-01-09.
+- Production hosting remains one free Cloudflare Pages project per origin (`*.pages.dev`, HTTPS). GitHub Pages under one account is a single origin, so it is not enabled: a project-pages URL would look like a live demo while breaking consent and CORS across shops.
 
 ## Next steps
 
@@ -35,8 +49,9 @@ Milestone 2 is **working locally**.
 
 ## How to run this milestone
 
+From the repository root:
+
 ```bash
-cd path/to/reloop  # repository root
 npm test
 npm run serve    # then open http://127.0.0.1:8080/ and click “Try the Saturday bicycle”
 npx playwright test
