@@ -2,7 +2,7 @@
 
 ## Status (26 November 2026, Europe/Madrid)
 
-Milestone 2 is **working locally**. The source tree is being published as a public repository at https://github.com/100342900-cloud/reloop (branch `main`).
+Milestone 2 is **working locally**. The source tree is published as a public repository at https://github.com/100342900-cloud/reloop (branch `main`). First push of `main`: `8ffeb4dc0f2b0b90bd8a0138eae38718d1030885` (26 November 2026, 21:31 Europe/Madrid).
 
 - Wow path: deny Spoke & Salvage, paste `http://127.0.0.1:8084/allied_cycles` (or the Allied origin), and recompose with no code changes. The new shop is discovered from its published `/policies/opendeal.json`. Allied's road-ready tourer needs no repair, so the package is Allied Cycles + River Runners: list €95 (80 + 15) → €80 (75 + 5) after published concessions.
 - Consent and deny are per origin in the hub UI. In-store pickup drops cargo and finishes at €90 (60 + 30).
