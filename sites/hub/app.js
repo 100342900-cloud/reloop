@@ -44,9 +44,6 @@ export function resolvePolicyUrl(raw) {
   const trimmed = String(raw || "").trim();
   if (!trimmed) throw new Error("Paste a shop URL first.");
   const url = new URL(trimmed);
-  if (url.pathname.endsWith("/policies/opendeal.json")) {
-    return { origin: url.origin, policyUrl: `${url.origin}/policies/opendeal.json`, siteUrl: `${url.origin}/` };
-  }
   return { origin: url.origin, policyUrl: `${url.origin}/policies/opendeal.json`, siteUrl: `${url.origin}/` };
 }
 

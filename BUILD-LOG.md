@@ -56,3 +56,14 @@ npm test
 npm run serve    # then open http://127.0.0.1:8080/ and click “Try the Saturday bicycle”
 npx playwright test
 ```
+
+## Milestone 3 — Claude Code passes (26 November 2026, Europe/Madrid)
+
+Independent review with Claude Code CLI, `--model opus` (this CLI version maps that alias to `claude-opus-4-8`; no "Opus 5.5" id is present in the binary). Fable was not used. Work ran on branch `m3-claude-passes` and is merged to `main` after review. No usage-limit warning appeared.
+
+### Pass 1 — conformance (MVP 0.2/0.3, official validators)
+
+- Review result: **no conformance defects**. Manifests, compiled networks, links, bridges and `.well-known` files are present and in sync on all five origins. `peer_policy.mode` is `closed`. Composition is a consented, CORS-open read of `/policies/opendeal.json` plus the deterministic OpenDeal engine. Holds stay labeled as simulations. Policy files send `Access-Control-Allow-Origin: *`; ordinary site JS does not.
+- Warning left in place: the hub lists Allied Cycles in `allowed_peers` for the URL-swap / wow path, with no agent tool calling that network yet.
+- One tidy from the review: `resolvePolicyUrl` had two identical branches and now always resolves to `{origin}/policies/opendeal.json`.
+- Re-run: OpenDeal **11/11**, Playwright **6/6**, `build_network` exit 0 (same Allied warning), `check_partner` OK for hub→all four shops and reuse→hub.
