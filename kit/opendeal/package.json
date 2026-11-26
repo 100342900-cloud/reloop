@@ -1,0 +1,31 @@
+{
+  "name": "opendeal-kit",
+  "version": "0.2.0",
+  "description": "Deterministic offer and concession engine for published OpenDeal shop policies. Prices never come from a model.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "main": "./opendeal.js",
+  "exports": {
+    ".": "./opendeal.js",
+    "./fixtures": "./fixtures.mjs"
+  },
+  "files": [
+    "opendeal.js",
+    "fixtures.mjs",
+    "README.md",
+    "docs"
+  ],
+  "scripts": {
+    "test": "node --test opendeal.test.mjs"
+  },
+  "keywords": [
+    "opendeal",
+    "agentic-web",
+    "circular-economy",
+    "offers",
+    "concessions"
+  ],
+  "engines": {
+    "node": ">=18"
+  }
+}

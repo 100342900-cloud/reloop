@@ -18,25 +18,38 @@ This is a synthetic demo. No real shops, no real payments. Holds are simulations
 
 Different host names and ports are used so each site is a distinct origin (required for consent and CORS). Production will use separate `*.pages.dev` hosts; GitHub project pages under one user are *not* distinct origins.
 
+## Try the demo
+
+1. `npm run serve` and open http://127.0.0.1:8080/
+2. Click **Try the Saturday bicycle**. The default shops compose a €115 list package into a €95 deal. No API key is required.
+3. Deny Spoke & Salvage, paste `http://127.0.0.1:8084/allied_cycles`, and compose again. Allied Cycles publishes a road-ready tourer, so the package no longer needs a repair shop (€95 list, €80 after published concessions).
+4. Switch to **I’ll collect it in store** to drop cargo (€90).
+5. Simulate a hold on each shop. Only the cargo shop may receive an area token or street address, and only at confirm time. Download the receipt to see SHA-256 hashes of the policies that were used.
+
+The optional assistant (official nsDeploy runtime) uses bring-your-own-key. This repo does not ship or request keys.
+
+## OpenDeal Kit
+
+The composer is a reusable, Apache-2.0 library in [`kit/opendeal/`](./kit/opendeal/). It works in Node and in the browser. See that [README](./kit/opendeal/README.md) and the [protocol reference](./kit/opendeal/docs/protocol.md).
+
 ## Commands
 
 ```bash
 npm test                 # OpenDeal unit tests
 npm run build:networks   # official build_network.mjs --check for every site
 npm run serve            # five origins on the ports above
-npx playwright test      # happy path plus CORS/catalogue checks
+npx playwright test      # happy path, wow path, consent, holds, receipts
 ```
-
-The Saturday bicycle button works **without an API key**. The optional assistant (official nsDeploy runtime) uses bring-your-own-key, including Connect with OpenRouter or Otari when you have a key. This repo does not ship or request keys.
 
 ## Layout
 
 ```
-kit/opendeal/     OpenDeal engine, fixtures and unit tests
+kit/opendeal/     OpenDeal Kit (engine, fixtures, docs, unit tests)
 sites/hub|reuse|repair|cargo|ally/   static origins
 vendor/           official runtime and validator (Apache-2.0, from cognizant-ai-labs/agentic-web)
 scripts/          build, copy, and local multi-origin server
 e2e/              Playwright tests
+docs/             pointers into the kit
 ```
 
 ## Licence

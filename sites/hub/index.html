@@ -4,84 +4,138 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>RE:LOOP — Don't shop for products. Shop for outcomes.</title>
+    <meta name="description" content="Independent reuse, repair and cargo shops publish open offer policies. Your browser composes a deal that no single site can sell.">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="assistant.css">
     <script type="module" src="site.js"></script>
     <script type="module" src="ui.js"></script>
   </head>
   <body>
-    <div class="wrap">
-      <header class="hero">
-        <p class="eyebrow">Open agentic circular economy · fictional Cedarwick</p>
-        <h1>Don't shop for products. Shop for outcomes.</h1>
-        <p class="pitch">Independent reuse, repair and cargo shops publish open offer policies. Your browser composes a deal that no single site can sell.</p>
-        <p class="banner">This is a fictional demo. No real shops, no real payments. Holds are simulations. The Saturday bicycle path does not need an AI key: prices come from a deterministic OpenDeal engine. Demo clock: Wednesday 6 January 2027 (Saturday is 9 January).</p>
-        <div class="actions">
+    <a class="skip" href="#main">Skip to the demo</a>
+    <header class="topbar">
+      <a class="wordmark" href="./" aria-label="RE:LOOP home">
+        <span class="mark" aria-hidden="true"></span>
+        RE:LOOP
+      </a>
+      <p class="topbar-note">Fictional Cedarwick demo · no real payments</p>
+    </header>
+
+    <main id="main">
+      <section class="hero" aria-labelledby="hero-title">
+        <p class="eyebrow">The open agentic circular economy</p>
+        <h1 id="hero-title">Don't shop for products. Shop for outcomes.</h1>
+        <p class="pitch">Ask for a working bicycle by Saturday. Independent shops publish their offer policies. Your browser composes a deal that no single site can sell.</p>
+        <div class="hero-actions">
           <button id="btn-saturday" type="button">Try the Saturday bicycle</button>
-          <a class="btn secondary" href="#assistant">AI model settings</a>
+          <a class="btn ghost" href="#how">How it works</a>
         </div>
-      </header>
-
-      <section id="step-consent" hidden>
-        <h2>Consent, per origin</h2>
-        <p class="note">Nothing is fetched until you agree. Each shop is a different origin. Your model key, if you add one later, never leaves this browser for a shop origin.</p>
-        <div id="consent-list"></div>
-        <div class="actions">
-          <button id="btn-compose" type="button">Compose from consented shops</button>
-        </div>
+        <p class="hero-meta">No AI key needed for this demo. Demo clock: Wednesday 6 January 2027 · Saturday is the 9th · budget €100.</p>
       </section>
 
-      <section id="need-card" hidden>
-        <h2>Need</h2>
-        <p id="need-summary"></p>
-      </section>
+      <ol id="how" class="how" aria-label="How RE:LOOP works">
+        <li><strong>Ask</strong> for an outcome, not a SKU.</li>
+        <li><strong>Allow</strong> each shop origin, one by one.</li>
+        <li><strong>Compose</strong> a package from published policies, not invented prices.</li>
+      </ol>
+
+      <nav id="stepper" class="stepper" hidden aria-label="Demo progress">
+        <ol>
+          <li id="step-ind-need"><span>1</span> Need</li>
+          <li id="step-ind-consent"><span>2</span> Consent</li>
+          <li id="step-ind-package"><span>3</span> Package</li>
+          <li id="step-ind-confirm"><span>4</span> Confirm</li>
+          <li id="step-ind-receipt"><span>5</span> Receipt</li>
+        </ol>
+      </nav>
 
       <p id="error-banner" hidden role="alert"></p>
 
-      <section id="result-panel" hidden>
-        <h2>Package board</h2>
-        <div class="board">
-          <div class="pkg">
-            <p>First composition (list prices)</p>
+      <section id="need-card" class="panel" hidden aria-labelledby="need-heading">
+        <h2 id="need-heading">Your need</h2>
+        <p id="need-summary"></p>
+      </section>
+
+      <section id="step-consent" class="panel" hidden aria-labelledby="consent-heading">
+        <h2 id="consent-heading">Consent, per origin</h2>
+        <p class="lede">Nothing is fetched until you allow it. Each shop is a different origin. Your model key never goes to a shop.</p>
+        <fieldset class="pickup">
+          <legend>How should the bicycle arrive?</legend>
+          <label><input type="radio" name="arrival" id="opt-deliver" value="deliver" checked> Local pickup by River Runners</label>
+          <label><input type="radio" name="arrival" id="opt-collect" value="collect"> I’ll collect it in store</label>
+        </fieldset>
+        <div id="consent-list" class="consent-grid"></div>
+        <div class="add-shop">
+          <label for="shop-url">A shop dropped out? Paste another published shop URL</label>
+          <div class="add-row">
+            <input id="shop-url" type="url" inputmode="url" spellcheck="false" placeholder="http://127.0.0.1:8084/" autocomplete="off">
+            <button id="btn-add-shop" type="button">Add shop</button>
+          </div>
+          <p id="add-shop-status" class="hint" role="status"></p>
+        </div>
+        <div class="actions">
+          <button id="btn-compose" type="button">Compose from allowed shops</button>
+        </div>
+      </section>
+
+      <section id="result-panel" class="panel" hidden aria-labelledby="package-heading">
+        <h2 id="package-heading">Package board</h2>
+        <div class="totals">
+          <div class="pkg pkg-before">
+            <p>First look · list prices</p>
             <strong id="initial-total">—</strong>
             <p id="initial-flag" class="flag"></p>
           </div>
-          <div class="pkg">
+          <div class="totals-arrow" aria-hidden="true">→</div>
+          <div class="pkg pkg-after">
             <p>After at most two concession rounds</p>
             <strong id="final-total">—</strong>
             <p id="final-flag" class="flag"></p>
           </div>
         </div>
-        <table>
-          <thead>
-            <tr><th>Shop</th><th>Line</th><th>List</th><th>Price</th><th>Ready / concessions</th></tr>
-          </thead>
-          <tbody id="package-table"></tbody>
-        </table>
-        <h3>Rounds</h3>
-        <ol id="rounds"></ol>
-        <h3>Inspector</h3>
-        <pre class="inspector" id="inspector"></pre>
+        <div id="package-table" class="shop-cards"></div>
+        <ol id="rounds" class="rounds" aria-label="Negotiation rounds"></ol>
+        <details id="inspector-wrap" class="inspector-wrap">
+          <summary>Technical inspector</summary>
+          <pre class="inspector" id="inspector"></pre>
+        </details>
       </section>
 
-      <section id="assistant" class="assistant" aria-labelledby="assistant-heading">
-        <h2 id="assistant-heading">Ask RE:LOOP</h2>
-        <p>Optional assistant for talking through a package this page has already composed. It uses the model and key you choose. It does not invent prices.</p>
-        <p class="assistant-note">Your messages and this page's data go to the LLM provider you choose in the settings below. The Saturday bicycle demo above works without a key.</p>
-        <p id="assistant-status" role="status">Connecting the assistant… If this message stays, the assistant could not load. You can still use the page directly.</p>
-        <div id="agent-app">
-          <div data-ns-slot="header"></div>
-          <div class="assistant-panels">
-            <div data-ns-slot="chat"></div>
-            <div data-ns-slot="agents"></div>
-          </div>
-          <div data-ns-slot="settings"></div>
+      <section id="confirm-panel" class="panel" hidden aria-labelledby="confirm-heading">
+        <h2 id="confirm-heading">Simulate holds</h2>
+        <p class="lede">Each hold is a simulation. Shops only see what you disclose on their card. No street address is sent at quote time.</p>
+        <div id="hold-cards" class="hold-grid"></div>
+      </section>
+
+      <section id="receipt-panel" class="panel" hidden aria-labelledby="receipt-heading">
+        <h2 id="receipt-heading">Receipt</h2>
+        <p class="watermark" id="receipt-watermark">SIMULATION — fictional Cedarwick, no real booking or payment</p>
+        <div id="receipt-body" class="receipt"></div>
+        <div class="actions">
+          <button id="btn-download-receipt" type="button">Download receipt JSON</button>
         </div>
       </section>
 
-      <footer>
-        <p>OpenDeal Kit is open source. Cedarwick, its shops and catalogues are synthetic. Built for the Open Agentic Web Challenge.</p>
-      </footer>
-    </div>
+      <section id="assistant" class="assistant panel quiet" aria-labelledby="assistant-heading">
+        <h2 id="assistant-heading">Optional assistant</h2>
+        <p>Talk through a package this page has already composed. It uses the model and key you choose. It does not invent prices.</p>
+        <p id="assistant-status" role="status">Connecting the assistant… If this message stays, the assistant could not load. You can still use the page directly.</p>
+        <details id="assistant-box">
+          <summary>Open AI model settings and chat</summary>
+          <p class="assistant-note">Your messages and this page's data go to the LLM provider you choose. The Saturday bicycle demo above works without a key.</p>
+          <div id="agent-app">
+            <div data-ns-slot="header"></div>
+            <div class="assistant-panels">
+              <div data-ns-slot="chat"></div>
+              <div data-ns-slot="agents"></div>
+            </div>
+            <div data-ns-slot="settings"></div>
+          </div>
+        </details>
+      </section>
+    </main>
+
+    <footer class="site-foot">
+      <p>OpenDeal Kit is open source. Cedarwick, its shops and catalogues are synthetic. Built for the Open Agentic Web Challenge.</p>
+    </footer>
   </body>
 </html>

@@ -1,8 +1,8 @@
 {
   "name": "reloop",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
-  "description": "RE:LOOP — Don't shop for products. Shop for outcomes. Open agentic circular economy demo.",
+  "description": "RE:LOOP \u2014 Don't shop for products. Shop for outcomes. Open agentic circular economy demo.",
   "license": "Apache-2.0",
   "type": "module",
   "scripts": {

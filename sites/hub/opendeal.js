@@ -369,8 +369,11 @@ export function compose(need, policies) {
   let current = initial;
   const applied = [];
 
+  // Explore at most MAX_ROUNDS even if the list package already meets the
+  // budget, so published concession chains (e.g. a spare kit that later
+  // unlocks a labour discount) can still lower the total. The final package
+  // is the lowest feasible result among the rounds, never an invented price.
   for (let round = 1; round <= MAX_ROUNDS; round += 1) {
-    if (current.meets_budget && current.meets_date) break;
     const options = applicableConcessions(need, policies, current);
     if (!options.length) break;
     // Prefer concessions that unlock flags, then those that cut the most cost.
@@ -395,17 +398,23 @@ export function compose(need, policies) {
     });
   }
 
-  const ok = current.meets_budget && current.meets_date;
+  const considered = rounds.map((r) => r.package);
+  const feasible = considered.filter((p) => p.meets_budget && p.meets_date);
+  const best = (feasible.length ? feasible : considered)
+    .slice()
+    .sort((a, b) => a.total - b.total)[0];
+
+  const ok = Boolean(best && best.meets_budget && best.meets_date);
   return {
     status: ok ? "composed" : "infeasible",
     reason: ok
       ? undefined
-      : !current.meets_budget
-        ? `The lowest package is ${current.total} ${CURRENCY}, over the budget of ${need.budget} ${CURRENCY}.`
-        : `The earliest ready date is ${current.ready_by}, after ${need.ready_by}.`,
+      : !best?.meets_budget
+        ? `The lowest package is ${best?.total} ${CURRENCY}, over the budget of ${need.budget} ${CURRENCY}.`
+        : `The earliest ready date is ${best?.ready_by}, after ${need.ready_by}.`,
     rounds,
     initialPackage: initial,
-    finalPackage: current,
+    finalPackage: best,
   };
 }
 

@@ -67,11 +67,12 @@ describe("compose — Saturday bicycle under €100", () => {
   });
 
   it("can drop cargo when the visitor will collect", () => {
-    // List prices without cargo are 55+45=100, which already meets a €100 budget.
-    // A tighter budget forces the same concessions as the happy path: 60+30=90.
-    const need = { ...saturdayNeed(95), constraints: ["collect"] };
+    // List prices without cargo are 55+45=100, already in a €100 budget.
+    // The engine still explores published concession rounds and keeps €90.
+    const need = { ...saturdayNeed(100), constraints: ["collect"] };
     const result = compose(need, ALL);
     assert.equal(result.status, "composed");
+    assert.equal(result.initialPackage.total, 100);
     assert.equal(result.finalPackage.lines.some((l) => l.role === "cargo"), false);
     assert.equal(result.finalPackage.total, 90);
   });
@@ -94,8 +95,9 @@ describe("compose — Saturday bicycle under €100", () => {
     const result = compose(saturdayNeed(100), [ALLY, CARGO]);
     assert.equal(result.status, "composed");
     assert.equal(result.finalPackage.lines.some((l) => l.role === "repair"), false);
-    // list 80 + 15 = 95, or 75 + 5 = 80 if both concessions apply
-    assert.ok(result.finalPackage.total <= 95);
+    // list 80 + 15 = 95; published concessions take it to 75 + 5 = 80
+    assert.equal(result.initialPackage.total, 95);
+    assert.equal(result.finalPackage.total, 80);
     assert.ok(result.finalPackage.meets_budget);
   });
 });
