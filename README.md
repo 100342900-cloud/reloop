@@ -2,9 +2,16 @@
 
 **Don't shop for products. Shop for outcomes.**
 
-A fictional Cedarwick demo for the [Open Agentic Web Challenge](https://cognizant-agenticweb.devpost.com/). Independent reuse, repair and cargo shops publish OpenDeal policies. The visitor's browser composes a package that no single site can sell. Prices come from a deterministic engine, not from a model inventing a discount.
+A fictional Cedarwick demo for the [Open Agentic Web Challenge](https://cognizant-agenticweb.devpost.com/). Ask for an outcome — *a working bicycle by Saturday, under €100* — and your browser composes it across independent reuse, repair and cargo shops. Each shop publishes an OpenDeal policy; a deterministic engine computes the price. A model may explain a result, but it never invents one.
 
-This is a synthetic demo. No real shops, no real payments. Holds are simulations.
+This is a synthetic demo: no real shops, no real payments. Every hold is a labeled simulation.
+
+## What a judge should notice
+
+- **Outcome, not SKU.** No single shop sells "a working bike by Saturday." The browser composes reuse, repair and pickup into one package.
+- **Deterministic, published prices.** Totals come from each shop's OpenDeal policy, not from a model inventing a discount.
+- **Real consent across five origins.** Nothing is fetched until you allow each shop, one origin at a time. Your address stays off the wire until a cargo confirm.
+- **Swap a shop at runtime.** Deny one, paste another, recompose — no code change.
 
 ## Live demo
 
@@ -29,10 +36,10 @@ npm run serve            # five origins on loopback
 
 Open http://127.0.0.1:8080/ and click **Try the Saturday bicycle**. No API key is required for this path.
 
-1. The default shops compose a €115 list package into a €95 deal.
+1. The three default shops compose a €115 list package down to a €95 deal.
 2. Deny Spoke & Salvage, paste `http://127.0.0.1:8084/allied_cycles`, and compose again. Allied Cycles publishes a road-ready tourer, so the package no longer needs a repair shop (€95 list, €80 after published concessions).
-3. Switch to **I’ll collect it in store** to drop cargo (€90).
-4. Simulate a hold on each shop. Only the cargo shop may receive an area token or street address, and only at confirm time. Download the receipt to see SHA-256 hashes of the policies that were used.
+3. Switch to **I’ll collect it in store** to drop the cargo leg (€90).
+4. Simulate a hold on each shop. Only the cargo shop may receive an area token or street address, and only at confirm time. Download the receipt to see the SHA-256 hash of every policy that was used.
 
 | Site | Origin (this machine) |
 | --- | --- |

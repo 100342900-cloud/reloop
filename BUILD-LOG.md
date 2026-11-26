@@ -74,3 +74,9 @@ Independent review with Claude Code CLI, `--model opus` (this CLI version maps t
 - Hub a11y: muted text and receipt watermark contrast raised to WCAG AA; the active stepper step gets `aria-current="step"`. Layout and test IDs are unchanged. Inspector and assistant stay collapsed by default.
 - Official `assistant.css` on each shop only had `--ns-primary` / `--ns-accent` set to the shop colour (the file's own comment invites this).
 - Re-run: OpenDeal **11/11**, Playwright **6/6**, `build_network` exit 0 (same Allied warning), `check_partner` OK. Screenshots are saved as `m3-*.png` in the local contest `shots/` folder (not committed to the repository).
+
+### Pass 3 — judge-facing English copy
+
+- README: tighter opening, a short "What a judge should notice" section (outcome not SKU; deterministic published prices; per-origin consent and selective disclosure; runtime shop swap), and slightly clearer local-demo steps. Price facts are unchanged (€115→€95, Allied €95→€80, collect €90).
+- Hub microcopy: eyebrow is now "Outcome shopping on the open agentic web"; package-board label "After up to two concession rounds"; composed flag suffix "no single shop could sell this outcome alone" (the tested "Composed" prefix is unchanged). Locked test strings were left alone.
+- Re-run: OpenDeal **11/11**, Playwright **6/6**, `build_network` exit 0 (same Allied warning), `check_partner` OK. Hub landing screenshot refreshed as `m3-hub-landing.png`.

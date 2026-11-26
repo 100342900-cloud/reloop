@@ -133,7 +133,7 @@ function renderResult() {
   el("initial-flag").className = "flag" + (initial?.meets_budget ? " ok" : " bad");
   el("final-total").textContent = final ? euro(final.total) : "—";
   el("final-flag").textContent = result.status === "composed"
-    ? "Composed — a flat shop site cannot sell this outcome alone"
+    ? "Composed — no single shop could sell this outcome alone"
     : "Infeasible";
   el("final-flag").className = "flag" + (result.status === "composed" ? " ok" : " bad");
   el("package-table").innerHTML = (final?.lines || []).map(shopCard).join("");
