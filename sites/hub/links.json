@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "networks": {
+    "reloop_hub": {
+      "spoke_and_salvage": "http://localhost:8081/spoke_and_salvage",
+      "tuesday_workshop": "http://127.0.0.1:8082/tuesday_workshop",
+      "river_runners": "http://localhost:8083/river_runners"
+    }
+  }
+}

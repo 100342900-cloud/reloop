@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "origin": "http://127.0.0.1:8084",
+  "site": "Allied Cycles",
+  "role": "reuse",
+  "currency": "EUR",
+  "items": [
+    {
+      "id": "ally-tourer-4",
+      "name": "Refurbished tourer, already road-ready",
+      "object": "bicycle",
+      "list_price": 80,
+      "min_price": 75,
+      "defects": [],
+      "needs_repair": [],
+      "ready_by": "2027-01-07"
+    }
+  ],
+  "concessions": [
+    {
+      "id": "ally-hold-discount",
+      "applies_to": "item:ally-tourer-4",
+      "price_delta": -5,
+      "description": "Discount if the visitor simulates a same-day hold."
+    }
+  ]
+}

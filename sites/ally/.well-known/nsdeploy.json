@@ -1,0 +1,18 @@
+{
+  "protocol": "nsdeploy-link/v1",
+  "exports": [
+    {
+      "network": "allied_cycles",
+      "front_man": "shop_floor",
+      "aliases": [
+        "allied_cycles",
+        "shop_floor"
+      ],
+      "url": "allied_cycles"
+    }
+  ],
+  "imports": [],
+  "link_updates": {
+    "mode": "browser-local"
+  }
+}

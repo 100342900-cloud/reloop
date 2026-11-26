@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tuesday Workshop — Cedarwick (fictional)</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="assistant.css">
+    <script type="module" src="site.js"></script>
+  </head>
+  <body>
+    <div class="wrap">
+      <p class="eyebrow">Repair workshop · fictional Cedarwick</p>
+      <h1>Tuesday Workshop</h1>
+      <p>Repairs and spare fitting.</p>
+      <p class="banner">This is a fictional shop in a demo of RE:LOOP. No real business, no real payments. Holds are simulations. Catalogue and prices come from a published OpenDeal policy that other agentic sites may read after you consent on their page.</p>
+      <p><a href="http://127.0.0.1:8080/">Back to RE:LOOP</a> · <a href="policies/opendeal.json">Published policy (JSON)</a> · <a href="agent-manifest.json">Agent manifest</a></p>
+      <h2>Catalogue</h2>
+      <div id="catalog"></div>
+      <h2>OpenDeal concessions</h2>
+      <ul id="concessions"></ul>
+      <section id="assistant" class="assistant" aria-labelledby="assistant-heading">
+        <h2 id="assistant-heading">Ask Tuesday Workshop</h2>
+        <p>Optional assistant for this shop's public catalogue and policy. It uses the model and key you choose.</p>
+        <p class="assistant-note">Your messages and this page's data go to the LLM provider you choose in the settings below. You confirm anything that cannot be undone before it happens. Holds are simulations.</p>
+        <p id="assistant-status" role="status">Connecting the assistant… If this message stays, the assistant could not load. You can still use the page directly.</p>
+        <div id="agent-app">
+          <div data-ns-slot="header"></div>
+          <div class="assistant-panels">
+            <div data-ns-slot="chat"></div>
+            <div data-ns-slot="agents"></div>
+          </div>
+          <div data-ns-slot="settings"></div>
+        </div>
+      </section>
+      <footer>Synthetic demo data only. Part of RE:LOOP for the Open Agentic Web Challenge.</footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "networks": [
+    {
+      "name": "river_runners"
+    }
+  ],
+  "actions": {
+    "version": 1
+  }
+}

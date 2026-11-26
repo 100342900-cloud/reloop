@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "origin": "http://localhost:8083",
+  "site": "River Runners",
+  "role": "cargo",
+  "currency": "EUR",
+  "services": [
+    {
+      "id": "local_run",
+      "name": "Shop to workshop to Cedarwick centre",
+      "list_price": 15,
+      "min_price": 5,
+      "ready_by": "2027-01-09"
+    }
+  ],
+  "concessions": [
+    {
+      "id": "saturday_pooled_run",
+      "applies_to": "service:local_run",
+      "requires_need": {
+        "ready_by_weekday": 6
+      },
+      "price_delta": -10,
+      "description": "Pooled Saturday run across Cedarwick."
+    }
+  ]
+}

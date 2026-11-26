@@ -1,0 +1,18 @@
+{
+  "protocol": "nsdeploy-link/v1",
+  "exports": [
+    {
+      "network": "reloop_hub",
+      "front_man": "reloop_concierge",
+      "aliases": [
+        "reloop_hub",
+        "reloop_concierge"
+      ],
+      "url": "reloop_hub"
+    }
+  ],
+  "imports": [],
+  "link_updates": {
+    "mode": "browser-local"
+  }
+}

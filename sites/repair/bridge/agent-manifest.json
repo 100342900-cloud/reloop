@@ -1,0 +1,10 @@
+{
+  "networks": [
+    {
+      "name": "tuesday_workshop"
+    }
+  ],
+  "actions": {
+    "version": 1
+  }
+}

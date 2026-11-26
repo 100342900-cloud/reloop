@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "origin": "http://localhost:8081",
+  "site": "Spoke & Salvage",
+  "role": "reuse",
+  "currency": "EUR",
+  "items": [
+    {
+      "id": "cedar-city-7",
+      "name": "Used city bike, 7-speed, worn brake pads",
+      "object": "bicycle",
+      "list_price": 55,
+      "min_price": 50,
+      "defects": [
+        "worn_brake_pads"
+      ],
+      "needs_repair": [
+        "brake_service"
+      ],
+      "ready_by": "2027-01-06"
+    }
+  ],
+  "concessions": [
+    {
+      "id": "include_spare",
+      "applies_to": "item:cedar-city-7",
+      "price_delta": 5,
+      "flags_set": [
+        "includes_spare"
+      ],
+      "description": "Add a new brake-pad kit to the bike so the workshop does not have to supply pads."
+    }
+  ]
+}

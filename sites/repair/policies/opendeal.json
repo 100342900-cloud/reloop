@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "origin": "http://127.0.0.1:8082",
+  "site": "Tuesday Workshop",
+  "role": "repair",
+  "currency": "EUR",
+  "services": [
+    {
+      "id": "brake_service",
+      "name": "Brake service and pad fitment",
+      "fixes": [
+        "brake_service"
+      ],
+      "list_price": 45,
+      "min_price": 30,
+      "ready_by": "2027-01-08"
+    }
+  ],
+  "concessions": [
+    {
+      "id": "spare_already_included",
+      "applies_to": "service:brake_service",
+      "requires_flags": [
+        "includes_spare"
+      ],
+      "price_delta": -15,
+      "description": "Labour discount when the shop already includes the pads."
+    }
+  ]
+}

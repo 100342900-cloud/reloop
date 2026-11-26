@@ -1,0 +1,77 @@
+{
+  "brand": "Spoke & Salvage Assistant",
+  "networks": [
+    {
+      "name": "spoke_and_salvage",
+      "front_man": "shop_floor",
+      "hocon": "./spoke_and_salvage.network.json",
+      "description": "Answer questions about Spoke & Salvage's second-hand bicycles and published OpenDeal policy, and simulate a hold.",
+      "tags": [
+        "agentified-website",
+        "reloop"
+      ],
+      "sample_queries": [
+        "What bikes do you have, and what is wrong with them?",
+        "What does your OpenDeal policy allow you to concede?",
+        "Simulate a hold on the city bike.",
+        "Can you repair the brakes here?"
+      ]
+    }
+  ],
+  "llm_router": {
+    "base_url": "https://api.otari.ai/api/v1",
+    "mock": false,
+    "byok_router": "https://api.otari.ai/api/v1"
+  },
+  "allowed_peers": [],
+  "peer_policy": {
+    "mode": "closed",
+    "deny_origins": [],
+    "note": "This site does not call partner networks by default."
+  },
+  "agent_mcp": {
+    "protocol": "nsdeploy-agent-mcp/v1",
+    "network": "spoke_and_salvage",
+    "front_man": "shop_floor",
+    "available": false,
+    "reason": "This is a static bundle; a public MCP facade requires an application host."
+  },
+  "theme": {
+    "primary": "#8a4b1f"
+  },
+  "linking": {
+    "protocol": "nsdeploy-link/v1",
+    "exports": [
+      {
+        "network": "spoke_and_salvage",
+        "front_man": "shop_floor",
+        "aliases": [
+          "spoke_and_salvage",
+          "shop_floor"
+        ],
+        "url": "spoke_and_salvage"
+      }
+    ],
+    "imports": [],
+    "link_updates": {
+      "mode": "browser-local"
+    }
+  },
+  "deployment": {
+    "mode": "static",
+    "self_contained_runtime": true,
+    "browser_mock": false,
+    "direct_byok": true,
+    "direct_mcp_requires_cors": true,
+    "public_mcp_facade": false
+  },
+  "actions": {
+    "version": 1,
+    "module": "./site-actions.js",
+    "bridge": "./bridge/action-bridge.html",
+    "agentTools": [
+      "get_site_state",
+      "simulate_hold"
+    ]
+  }
+}

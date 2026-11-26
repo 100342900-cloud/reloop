@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>RE:LOOP — Don't shop for products. Shop for outcomes.</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="assistant.css">
+    <script type="module" src="site.js"></script>
+    <script type="module" src="ui.js"></script>
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="hero">
+        <p class="eyebrow">Open agentic circular economy · fictional Cedarwick</p>
+        <h1>Don't shop for products. Shop for outcomes.</h1>
+        <p class="pitch">Independent reuse, repair and cargo shops publish open offer policies. Your browser composes a deal that no single site can sell.</p>
+        <p class="banner">This is a fictional demo. No real shops, no real payments. Holds are simulations. The Saturday bicycle path does not need an AI key: prices come from a deterministic OpenDeal engine. Demo clock: Wednesday 6 January 2027 (Saturday is 9 January).</p>
+        <div class="actions">
+          <button id="btn-saturday" type="button">Try the Saturday bicycle</button>
+          <a class="btn secondary" href="#assistant">AI model settings</a>
+        </div>
+      </header>
+
+      <section id="step-consent" hidden>
+        <h2>Consent, per origin</h2>
+        <p class="note">Nothing is fetched until you agree. Each shop is a different origin. Your model key, if you add one later, never leaves this browser for a shop origin.</p>
+        <div id="consent-list"></div>
+        <div class="actions">
+          <button id="btn-compose" type="button">Compose from consented shops</button>
+        </div>
+      </section>
+
+      <section id="need-card" hidden>
+        <h2>Need</h2>
+        <p id="need-summary"></p>
+      </section>
+
+      <p id="error-banner" hidden role="alert"></p>
+
+      <section id="result-panel" hidden>
+        <h2>Package board</h2>
+        <div class="board">
+          <div class="pkg">
+            <p>First composition (list prices)</p>
+            <strong id="initial-total">—</strong>
+            <p id="initial-flag" class="flag"></p>
+          </div>
+          <div class="pkg">
+            <p>After at most two concession rounds</p>
+            <strong id="final-total">—</strong>
+            <p id="final-flag" class="flag"></p>
+          </div>
+        </div>
+        <table>
+          <thead>
+            <tr><th>Shop</th><th>Line</th><th>List</th><th>Price</th><th>Ready / concessions</th></tr>
+          </thead>
+          <tbody id="package-table"></tbody>
+        </table>
+        <h3>Rounds</h3>
+        <ol id="rounds"></ol>
+        <h3>Inspector</h3>
+        <pre class="inspector" id="inspector"></pre>
+      </section>
+
+      <section id="assistant" class="assistant" aria-labelledby="assistant-heading">
+        <h2 id="assistant-heading">Ask RE:LOOP</h2>
+        <p>Optional assistant for talking through a package this page has already composed. It uses the model and key you choose. It does not invent prices.</p>
+        <p class="assistant-note">Your messages and this page's data go to the LLM provider you choose in the settings below. The Saturday bicycle demo above works without a key.</p>
+        <p id="assistant-status" role="status">Connecting the assistant… If this message stays, the assistant could not load. You can still use the page directly.</p>
+        <div id="agent-app">
+          <div data-ns-slot="header"></div>
+          <div class="assistant-panels">
+            <div data-ns-slot="chat"></div>
+            <div data-ns-slot="agents"></div>
+          </div>
+          <div data-ns-slot="settings"></div>
+        </div>
+      </section>
+
+      <footer>
+        <p>OpenDeal Kit is open source. Cedarwick, its shops and catalogues are synthetic. Built for the Open Agentic Web Challenge.</p>
+      </footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,18 @@
+{
+  "protocol": "nsdeploy-link/v1",
+  "exports": [
+    {
+      "network": "tuesday_workshop",
+      "front_man": "workshop_desk",
+      "aliases": [
+        "tuesday_workshop",
+        "workshop_desk"
+      ],
+      "url": "tuesday_workshop"
+    }
+  ],
+  "imports": [],
+  "link_updates": {
+    "mode": "browser-local"
+  }
+}

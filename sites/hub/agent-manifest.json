@@ -1,0 +1,81 @@
+{
+  "brand": "RE:LOOP Assistant",
+  "networks": [
+    {
+      "name": "reloop_hub",
+      "front_man": "reloop_concierge",
+      "hocon": "./reloop_hub.network.json",
+      "description": "Compose a working bicycle from independent Cedarwick reuse, repair and cargo shops, using published OpenDeal policies and the visitor's own model key.",
+      "tags": [
+        "agentified-website",
+        "reloop"
+      ],
+      "sample_queries": [
+        "I need a working bicycle before Saturday, under 100 euros.",
+        "Compose a package from the shops I have already consented to.",
+        "Simulate a hold on the composed package.",
+        "Can you pay for the bicycle with a credit card on this site?"
+      ]
+    }
+  ],
+  "llm_router": {
+    "base_url": "https://api.otari.ai/api/v1",
+    "mock": false,
+    "byok_router": "https://api.otari.ai/api/v1"
+  },
+  "allowed_peers": [
+    "http://localhost:8081",
+    "http://127.0.0.1:8082",
+    "http://localhost:8083",
+    "http://127.0.0.1:8084"
+  ],
+  "peer_policy": {
+    "mode": "closed",
+    "deny_origins": [],
+    "note": "Calls only the partner sites in allowed_peers, after the visitor agrees."
+  },
+  "agent_mcp": {
+    "protocol": "nsdeploy-agent-mcp/v1",
+    "network": "reloop_hub",
+    "front_man": "reloop_concierge",
+    "available": false,
+    "reason": "This is a static bundle; a public MCP facade requires an application host."
+  },
+  "theme": {
+    "primary": "#1f6b4a"
+  },
+  "linking": {
+    "protocol": "nsdeploy-link/v1",
+    "exports": [
+      {
+        "network": "reloop_hub",
+        "front_man": "reloop_concierge",
+        "aliases": [
+          "reloop_hub",
+          "reloop_concierge"
+        ],
+        "url": "reloop_hub"
+      }
+    ],
+    "imports": [],
+    "link_updates": {
+      "mode": "browser-local"
+    }
+  },
+  "deployment": {
+    "mode": "static",
+    "self_contained_runtime": true,
+    "browser_mock": false,
+    "direct_byok": true,
+    "direct_mcp_requires_cors": true,
+    "public_mcp_facade": false
+  },
+  "actions": {
+    "version": 1,
+    "module": "./site-actions.js",
+    "bridge": "./bridge/action-bridge.html",
+    "agentTools": [
+      "get_site_state"
+    ]
+  }
+}

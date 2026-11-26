@@ -1,0 +1,77 @@
+{
+  "brand": "Tuesday Workshop Assistant",
+  "networks": [
+    {
+      "name": "tuesday_workshop",
+      "front_man": "workshop_desk",
+      "hocon": "./tuesday_workshop.network.json",
+      "description": "Answer questions about Tuesday Workshop's repair services and published OpenDeal policy, and simulate a slot hold.",
+      "tags": [
+        "agentified-website",
+        "reloop"
+      ],
+      "sample_queries": [
+        "What does a brake service cost, and when can you finish?",
+        "Do you discount the labour if the shop already includes the pads?",
+        "Simulate a hold on a Friday brake service.",
+        "Can you sell me a bicycle?"
+      ]
+    }
+  ],
+  "llm_router": {
+    "base_url": "https://api.otari.ai/api/v1",
+    "mock": false,
+    "byok_router": "https://api.otari.ai/api/v1"
+  },
+  "allowed_peers": [],
+  "peer_policy": {
+    "mode": "closed",
+    "deny_origins": [],
+    "note": "This site does not call partner networks by default."
+  },
+  "agent_mcp": {
+    "protocol": "nsdeploy-agent-mcp/v1",
+    "network": "tuesday_workshop",
+    "front_man": "workshop_desk",
+    "available": false,
+    "reason": "This is a static bundle; a public MCP facade requires an application host."
+  },
+  "theme": {
+    "primary": "#2c4a6e"
+  },
+  "linking": {
+    "protocol": "nsdeploy-link/v1",
+    "exports": [
+      {
+        "network": "tuesday_workshop",
+        "front_man": "workshop_desk",
+        "aliases": [
+          "tuesday_workshop",
+          "workshop_desk"
+        ],
+        "url": "tuesday_workshop"
+      }
+    ],
+    "imports": [],
+    "link_updates": {
+      "mode": "browser-local"
+    }
+  },
+  "deployment": {
+    "mode": "static",
+    "self_contained_runtime": true,
+    "browser_mock": false,
+    "direct_byok": true,
+    "direct_mcp_requires_cors": true,
+    "public_mcp_facade": false
+  },
+  "actions": {
+    "version": 1,
+    "module": "./site-actions.js",
+    "bridge": "./bridge/action-bridge.html",
+    "agentTools": [
+      "get_site_state",
+      "simulate_hold"
+    ]
+  }
+}

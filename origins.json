@@ -1,0 +1,60 @@
+{
+  "demo_clock": "2027-01-06",
+  "demo_saturday": "2027-01-09",
+  "sites": {
+    "hub": {
+      "id": "hub",
+      "name": "RE:LOOP",
+      "tagline": "Don't shop for products. Shop for outcomes.",
+      "host": "127.0.0.1",
+      "port": 8080,
+      "network": "reloop_hub",
+      "front_man": "reloop_concierge",
+      "theme": "#1f6b4a"
+    },
+    "reuse": {
+      "id": "reuse",
+      "name": "Spoke & Salvage",
+      "role": "reuse",
+      "tagline": "Second-hand bicycles in Cedarwick.",
+      "host": "localhost",
+      "port": 8081,
+      "network": "spoke_and_salvage",
+      "front_man": "shop_floor",
+      "theme": "#8a4b1f"
+    },
+    "repair": {
+      "id": "repair",
+      "name": "Tuesday Workshop",
+      "role": "repair",
+      "tagline": "Repairs and spare fitting.",
+      "host": "127.0.0.1",
+      "port": 8082,
+      "network": "tuesday_workshop",
+      "front_man": "workshop_desk",
+      "theme": "#2c4a6e"
+    },
+    "cargo": {
+      "id": "cargo",
+      "name": "River Runners",
+      "role": "cargo",
+      "tagline": "Local pickup across Cedarwick.",
+      "host": "localhost",
+      "port": 8083,
+      "network": "river_runners",
+      "front_man": "dispatch",
+      "theme": "#4a3d6e"
+    },
+    "ally": {
+      "id": "ally",
+      "name": "Allied Cycles",
+      "role": "reuse",
+      "tagline": "Another independent Cedarwick shop.",
+      "host": "127.0.0.1",
+      "port": 8084,
+      "network": "allied_cycles",
+      "front_man": "shop_floor",
+      "theme": "#1f5a6b"
+    }
+  }
+}

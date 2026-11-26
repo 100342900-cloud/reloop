@@ -1,0 +1,10 @@
+{
+  "networks": [
+    {
+      "name": "spoke_and_salvage"
+    }
+  ],
+  "actions": {
+    "version": 1
+  }
+}

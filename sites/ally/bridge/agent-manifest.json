@@ -1,0 +1,10 @@
+{
+  "networks": [
+    {
+      "name": "allied_cycles"
+    }
+  ],
+  "actions": {
+    "version": 1
+  }
+}

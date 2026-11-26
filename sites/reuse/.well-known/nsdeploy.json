@@ -1,0 +1,18 @@
+{
+  "protocol": "nsdeploy-link/v1",
+  "exports": [
+    {
+      "network": "spoke_and_salvage",
+      "front_man": "shop_floor",
+      "aliases": [
+        "spoke_and_salvage",
+        "shop_floor"
+      ],
+      "url": "spoke_and_salvage"
+    }
+  ],
+  "imports": [],
+  "link_updates": {
+    "mode": "browser-local"
+  }
+}

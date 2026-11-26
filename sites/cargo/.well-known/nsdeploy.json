@@ -1,0 +1,18 @@
+{
+  "protocol": "nsdeploy-link/v1",
+  "exports": [
+    {
+      "network": "river_runners",
+      "front_man": "dispatch",
+      "aliases": [
+        "river_runners",
+        "dispatch"
+      ],
+      "url": "river_runners"
+    }
+  ],
+  "imports": [],
+  "link_updates": {
+    "mode": "browser-local"
+  }
+}

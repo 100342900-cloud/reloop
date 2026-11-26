@@ -1,0 +1,77 @@
+{
+  "brand": "River Runners Assistant",
+  "networks": [
+    {
+      "name": "river_runners",
+      "front_man": "dispatch",
+      "hocon": "./river_runners.network.json",
+      "description": "Answer questions about River Runners' local pickup policy, and simulate a run hold.",
+      "tags": [
+        "agentified-website",
+        "reloop"
+      ],
+      "sample_queries": [
+        "How much is a run from the shop to the workshop to Cedarwick centre?",
+        "Do you have a cheaper Saturday pooled run?",
+        "Simulate a hold on a Saturday pickup. Do not use a street address yet.",
+        "Can you store the bicycle for a month?"
+      ]
+    }
+  ],
+  "llm_router": {
+    "base_url": "https://api.otari.ai/api/v1",
+    "mock": false,
+    "byok_router": "https://api.otari.ai/api/v1"
+  },
+  "allowed_peers": [],
+  "peer_policy": {
+    "mode": "closed",
+    "deny_origins": [],
+    "note": "This site does not call partner networks by default."
+  },
+  "agent_mcp": {
+    "protocol": "nsdeploy-agent-mcp/v1",
+    "network": "river_runners",
+    "front_man": "dispatch",
+    "available": false,
+    "reason": "This is a static bundle; a public MCP facade requires an application host."
+  },
+  "theme": {
+    "primary": "#4a3d6e"
+  },
+  "linking": {
+    "protocol": "nsdeploy-link/v1",
+    "exports": [
+      {
+        "network": "river_runners",
+        "front_man": "dispatch",
+        "aliases": [
+          "river_runners",
+          "dispatch"
+        ],
+        "url": "river_runners"
+      }
+    ],
+    "imports": [],
+    "link_updates": {
+      "mode": "browser-local"
+    }
+  },
+  "deployment": {
+    "mode": "static",
+    "self_contained_runtime": true,
+    "browser_mock": false,
+    "direct_byok": true,
+    "direct_mcp_requires_cors": true,
+    "public_mcp_facade": false
+  },
+  "actions": {
+    "version": 1,
+    "module": "./site-actions.js",
+    "bridge": "./bridge/action-bridge.html",
+    "agentTools": [
+      "get_site_state",
+      "simulate_hold"
+    ]
+  }
+}
