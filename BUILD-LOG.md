@@ -67,3 +67,10 @@ Independent review with Claude Code CLI, `--model opus` (this CLI version maps t
 - Warning left in place: the hub lists Allied Cycles in `allowed_peers` for the URL-swap / wow path, with no agent tool calling that network yet.
 - One tidy from the review: `resolvePolicyUrl` had two identical branches and now always resolves to `{origin}/policies/opendeal.json`.
 - Re-run: OpenDeal **11/11**, Playwright **6/6**, `build_network` exit 0 (same Allied warning), `check_partner` OK for hub→all four shops and reuse→hub.
+
+### Pass 2 — design and accessibility
+
+- The four shop origins were redesigned as one product family with the hub: same paper/serif language, skip link, landmarks, catalogue cards, concession list, collapsed optional assistant, mobile layout, `prefers-reduced-motion`, and focus-visible. Each shop keeps its accent (Spoke & Salvage rust, Tuesday Workshop blue, River Runners purple, Allied Cycles teal). Simulation banners stay visible. Catalogue strings are HTML-escaped; prices still come only from `/policies/opendeal.json`.
+- Hub a11y: muted text and receipt watermark contrast raised to WCAG AA; the active stepper step gets `aria-current="step"`. Layout and test IDs are unchanged. Inspector and assistant stay collapsed by default.
+- Official `assistant.css` on each shop only had `--ns-primary` / `--ns-accent` set to the shop colour (the file's own comment invites this).
+- Re-run: OpenDeal **11/11**, Playwright **6/6**, `build_network` exit 0 (same Allied warning), `check_partner` OK. Screenshots: `/workspace/cognizant-agenticweb/shots/m3-*.png`.

@@ -42,6 +42,8 @@ function setStep(current) {
     if (!node) continue;
     node.classList.toggle("is-on", name === current);
     node.classList.toggle("is-done", visible[name] && order.indexOf(name) < order.indexOf(current));
+    if (name === current) node.setAttribute("aria-current", "step");
+    else node.removeAttribute("aria-current");
   }
 }
 

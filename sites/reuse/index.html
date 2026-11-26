@@ -3,37 +3,62 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Spoke & Salvage — Cedarwick (fictional)</title>
+    <title>Spoke &amp; Salvage — Cedarwick (fictional)</title>
+    <meta name="description" content="Spoke & Salvage, a fictional Cedarwick reuse shop in the RE:LOOP demo. Catalogue and prices come from a published OpenDeal policy.">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="assistant.css">
     <script type="module" src="site.js"></script>
   </head>
   <body>
-    <div class="wrap">
-      <p class="eyebrow">Second-hand bicycles · fictional Cedarwick</p>
-      <h1>Spoke & Salvage</h1>
-      <p>Second-hand bicycles in Cedarwick.</p>
-      <p class="banner">This is a fictional shop in a demo of RE:LOOP. No real business, no real payments. Holds are simulations. Catalogue and prices come from a published OpenDeal policy that other agentic sites may read after you consent on their page.</p>
-      <p><a href="http://127.0.0.1:8080/">Back to RE:LOOP</a> · <a href="policies/opendeal.json">Published policy (JSON)</a> · <a href="agent-manifest.json">Agent manifest</a></p>
-      <h2>Catalogue</h2>
-      <div id="catalog"></div>
-      <h2>OpenDeal concessions</h2>
-      <ul id="concessions"></ul>
-      <section id="assistant" class="assistant" aria-labelledby="assistant-heading">
-        <h2 id="assistant-heading">Ask Spoke & Salvage</h2>
-        <p>Optional assistant for this shop's public catalogue and policy. It uses the model and key you choose.</p>
-        <p class="assistant-note">Your messages and this page's data go to the LLM provider you choose in the settings below. You confirm anything that cannot be undone before it happens. Holds are simulations.</p>
-        <p id="assistant-status" role="status">Connecting the assistant… If this message stays, the assistant could not load. You can still use the page directly.</p>
-        <div id="agent-app">
-          <div data-ns-slot="header"></div>
-          <div class="assistant-panels">
-            <div data-ns-slot="chat"></div>
-            <div data-ns-slot="agents"></div>
-          </div>
-          <div data-ns-slot="settings"></div>
-        </div>
+    <a class="skip" href="#catalogue">Skip to the catalogue</a>
+    <header class="topbar">
+      <a class="wordmark" href="http://127.0.0.1:8080/" aria-label="Back to RE:LOOP home">
+        <span class="mark" aria-hidden="true"></span>
+        <span class="back">← Back to</span> RE:LOOP
+      </a>
+      <span class="shop-badge">Reuse shop · Cedarwick</span>
+    </header>
+
+    <main id="main">
+      <section class="hero" aria-labelledby="shop-title">
+        <p class="eyebrow">Second-hand bicycles · fictional Cedarwick</p>
+        <h1 id="shop-title">Spoke &amp; Salvage</h1>
+        <p class="tagline">Second-hand bicycles in Cedarwick.</p>
+        <p class="banner" role="note">This is a fictional shop in a demo of RE:LOOP. No real business, no real payments. Holds are simulations. Catalogue and prices come from a published OpenDeal policy that other agentic sites may read after you consent on their page.</p>
+        <p class="hero-links"><a href="policies/opendeal.json">Published policy (JSON)</a> · <a href="agent-manifest.json">Agent manifest</a> · <a href="http://127.0.0.1:8080/">Back to RE:LOOP</a></p>
       </section>
-      <footer>Synthetic demo data only. Part of RE:LOOP for the Open Agentic Web Challenge.</footer>
-    </div>
+
+      <section id="catalogue" aria-labelledby="catalogue-heading">
+        <h2 id="catalogue-heading">Catalogue</h2>
+        <div id="catalog" class="shop-cards"></div>
+      </section>
+
+      <section aria-labelledby="concessions-heading">
+        <h2 id="concessions-heading">OpenDeal concessions</h2>
+        <ul id="concessions" class="concessions"></ul>
+      </section>
+
+      <section id="assistant" class="assistant panel quiet" aria-labelledby="assistant-heading">
+        <h2 id="assistant-heading">Ask Spoke &amp; Salvage</h2>
+        <p>Optional assistant for this shop's public catalogue and policy. It uses the model and key you choose. Holds are simulations.</p>
+        <p id="assistant-status" role="status">Connecting the assistant… If this message stays, the assistant could not load. You can still use the page directly.</p>
+        <details id="assistant-box">
+          <summary>Open AI model settings and chat</summary>
+          <p class="assistant-note">Your messages and this page's data go to the LLM provider you choose in the settings below. You confirm anything that cannot be undone before it happens. Holds are simulations.</p>
+          <div id="agent-app">
+            <div data-ns-slot="header"></div>
+            <div class="assistant-panels">
+              <div data-ns-slot="chat"></div>
+              <div data-ns-slot="agents"></div>
+            </div>
+            <div data-ns-slot="settings"></div>
+          </div>
+        </details>
+      </section>
+    </main>
+
+    <footer class="site-foot">
+      <p>Synthetic demo data only. Part of RE:LOOP for the Open Agentic Web Challenge.</p>
+    </footer>
   </body>
 </html>

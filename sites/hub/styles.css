@@ -1,7 +1,7 @@
 :root {
   --ink: #1a241c;
   --ink-soft: #3e4a41;
-  --muted: #66726a;
+  --muted: #5f6961;
   --paper: #f4efe6;
   --paper-2: #fffaf3;
   --wash: #e8f0ea;
@@ -10,6 +10,7 @@
   --moss-dark: #124632;
   --moss-soft: #dcebe3;
   --copper: #b85c28;
+  --copper-ink: #9e4a1e;
   --copper-soft: #f3e0d4;
   --bad: #8c2f2f;
   --bad-soft: #f6e4e2;
@@ -330,7 +331,7 @@ pre.inspector {
   font-size: 0.85rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--copper);
+  color: var(--copper-ink);
   background: var(--copper-soft);
   display: inline-block;
   padding: 6px 10px;

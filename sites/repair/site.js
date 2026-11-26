@@ -70,16 +70,51 @@ AssistantMount.start();
 window.App = App;
 window.AssistantMount = AssistantMount;
 
+function escapeHtml(value) {
+  return String(value).replace(/[&<>"']/g, (ch) => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
+  }[ch]));
+}
+
+function humanToken(token) {
+  return escapeHtml(String(token).replace(/_/g, " "));
+}
+
+function catalogueCard(line, kind) {
+  const chips = []
+    .concat((line.defects || []).map((d) => `Defect: ${humanToken(d)}`))
+    .concat((line.needs_repair || []).map((r) => `Needs ${humanToken(r)}`))
+    .concat((line.fixes || []).map((f) => `Fixes ${humanToken(f)}`));
+  const chipsHtml = chips.length
+    ? `<ul class="chips">${chips.map((c) => `<li>${c}</li>`).join("")}</ul>`
+    : "";
+  return `<article class="shop-card">
+      <header>
+        <h3>${escapeHtml(line.name)}</h3>
+        <span class="badge">${escapeHtml(kind)}</span>
+      </header>
+      <p class="price">€${escapeHtml(line.list_price)}<span class="min">Floor €${escapeHtml(line.min_price)} · id ${escapeHtml(line.id)}</span></p>
+      ${chipsHtml}
+      <p class="ready">Ready by ${escapeHtml(line.ready_by || "—")}</p>
+    </article>`;
+}
+
 async function bootPage() {
   const policy = await App.page.load();
   const catalog = document.getElementById("catalog");
-  const lines = [...(policy.items || []), ...(policy.services || [])];
-  catalog.innerHTML = lines.map((line) => {
-    const price = "€" + line.list_price + " (minimum €" + line.min_price + ")";
-    const extra = line.defects?.length ? "Defects: " + line.defects.join(", ") : (line.fixes ? "Fixes: " + line.fixes.join(", ") : "");
-    return `<article class="card"><h3>${line.name}</h3><p>Id: ${line.id} · ${price}</p><p>${extra}</p><p>Ready by ${line.ready_by || "—"}.</p></article>`;
-  }).join("");
+  const lines = [
+    ...(policy.items || []).map((item) => [item, item.object || "item"]),
+    ...(policy.services || []).map((service) => [service, "service"]),
+  ];
+  catalog.innerHTML = lines.map(([line, kind]) => catalogueCard(line, kind)).join("");
   const concessions = document.getElementById("concessions");
-  concessions.innerHTML = (policy.concessions || []).map((c) => `<li><strong>${c.id}</strong> — ${c.description} (${c.price_delta} €)</li>`).join("");
+  const list = policy.concessions || [];
+  concessions.innerHTML = list.length
+    ? list.map((c) => {
+        const delta = Number(c.price_delta) || 0;
+        const deltaStr = (delta >= 0 ? "+€" : "−€") + Math.abs(delta);
+        return `<li><span class="cid">${humanToken(c.id)}</span> — ${escapeHtml(c.description)} <span class="delta">(${deltaStr})</span></li>`;
+      }).join("")
+    : `<li class="empty">No concessions published.</li>`;
 }
 bootPage();
